@@ -56,7 +56,7 @@ const router = createRouter({
 
     {
       path: '/item/:id',
-      name: 'item',
+      name: 'item-info',
       component: ItemView
     }
   ]
