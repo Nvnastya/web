@@ -33,6 +33,10 @@ main {
     padding-bottom: 40px;
 }
 
+.p-15 {
+    padding: 15px;
+}
+
 footer{
     background-color:rgb(177, 175, 169);
     padding: 15px;
@@ -238,4 +242,13 @@ input[type="tel"]{
 .message {
     text-align: center;
     margin-top: 15px;
+}
+
+.error {
+    color: red;
+    font-size: 13px;
+}
+
+.has-error input {
+    border: 1px solid red;
 }

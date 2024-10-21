@@ -1,15 +1,12 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="p-15">
+    <h1>Наши магазины</h1>
+    <p>Москва Пресненская наб., 2</p>
+    <p>Москва ул. Ярцевская, 19</p>
+    <p>Москва Ленинградское шоссе, 16А стр 4</p>
+    <p>Москва 23-й км, Киевское шоссе, д. 1</p>
+    <p>Москва Чонгарский бульвар, 7</p>
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+

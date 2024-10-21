@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+
 </script>
 
 <template>
@@ -10,18 +11,13 @@ import { RouterLink, RouterView } from 'vue-router'
               <li><router-link to="/">Главная</router-link></li>
               <li><router-link to="/authorization">Личный кабинет</router-link></li>
               <li><router-link to="/basket">Корзина</router-link></li>
-              <li><router-link to="/sale">Акции</router-link></li>
+              <li><router-link to="/sale">Ваш подарок</router-link></li>
             </ul>
         </nav>
         <img class="logo" src="https://cdn1.flamp.ru/cafbfe0fa17cf6b5758195a42ded9564.jpg" />
     </div>
-    <div class="banner">
-        <div class="center_flex"><h1>Уход за телом</h1></div>
-    </div>
   </header>
-
   <RouterView />
-
   <footer class="row between vertical-center">
     <div>
         <nav>

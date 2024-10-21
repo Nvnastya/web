@@ -1,7 +1,13 @@
 <script setup>
+import Carusel from '@/components/Carusel/Carusel.vue';
+const buy = () => {
+    alert('Товар добавлен в корзину')
+    //send request to API
+}
 </script>
 
 <template>
+    <Carusel/>
     <main>
         <div><h2>Лосьон для тела La Sultane de Saba AYURVEDIQUE- AMBRE VANILLE PATCHOULI</h2></div>
         <section class="row">
@@ -21,7 +27,9 @@
                 <div class="row vertical-center">
                     <div class="price">7 153₽</div>
                     <div>
-                        <button>Купить</button>
+                        <button @click="buy">
+                            Купить
+                        </button>
                     </div>
                 </div>
             </section>
