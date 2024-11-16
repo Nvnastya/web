@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\Category;
+
+use Illuminate\Http\Request;
+
+class CategoryController extends Controller
+{
+    public function list()
+    {
+        return Category::query()
+            ->get();
+    }
+
+    public function info($id)
+    {
+        return Category::query()
+            ->where("id", $id)
+            ->first();
+    }
+}
