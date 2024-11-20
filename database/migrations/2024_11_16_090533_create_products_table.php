@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('description');
             $table->boolean('is_gift')->default(false);
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            #$table->string('image_url')
             $table->timestamps();
         });
     }

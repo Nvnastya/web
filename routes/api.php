@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,21 +18,51 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('products', [App\Http\Controllers\ProductController::class,'list']);
-Route::get('products/gift', [App\Http\Controllers\ProductController::class,'gift']);
-Route::get('products/{id}', [App\Http\Controllers\ProductController::class,'info']);
+Route::prefix('products')->group(function(){
+    Route::get('/', [App\Http\Controllers\ProductController::class, 'list']);
+    Route::get('/gift', [App\Http\Controllers\ProductController::class,'gift']);
+    Route::get('/{id}', [App\Http\Controllers\ProductController::class, 'info']);
+    Route::post('/', [App\Http\Controllers\ProductController::class, 'create']);
+    Route::put('/{id}', [App\Http\Controllers\ProductController::class, 'update']);
+    Route::delete('/{id}', [App\Http\Controllers\ProductController::class, 'delete']);
+});
 
-Route::get('categories', [App\Http\Controllers\CategoryController::class,'list']);
-Route::get('categories/{id}', [App\Http\Controllers\CategoryController::class,'info']);
+Route::prefix('categories')->group(function(){
+    Route::get('', [App\Http\Controllers\CategoryController::class, 'list']);
+    Route::get('{id}', [App\Http\Controllers\CategoryController::class, 'info']);
+    Route::post('', [App\Http\Controllers\CategoryController::class, 'create']);
+    Route::put('{id}', [App\Http\Controllers\CategoryController::class, 'update']);
+    Route::delete('{id}', [App\Http\Controllers\CategoryController::class, 'delete']);
+});
 
-Route::get('orders', [App\Http\Controllers\OrderController::class,'list']);
-Route::get('orders/{id}', [App\Http\Controllers\OrderController::class,'info']);
+Route::prefix('orders')->group(function(){
+    Route::get('', [App\Http\Controllers\OrderController::class, 'list']);
+    Route::get('{id}', [App\Http\Controllers\OrderController::class, 'info']);
+    Route::post('', [App\Http\Controllers\OrderController::class, 'create']);
+    Route::put('{id}', [App\Http\Controllers\OrderController::class, 'update']);
+    Route::delete('{id}', [App\Http\Controllers\OrderController::class, 'delete']);
+});
 
-Route::get('carts', [App\Http\Controllers\CartController::class,'list']);
-Route::get('carts/{id}', [App\Http\Controllers\CartController::class,'info']);
+Route::prefix('carts')->group(function(){
+    Route::get('', [App\Http\Controllers\CartController::class, 'list']);
+    Route::get('{id}', [App\Http\Controllers\CartController::class, 'info']);
+    Route::post('', [App\Http\Controllers\CartController::class, 'create']);
+    Route::put('{id}', [App\Http\Controllers\CartController::class, 'update']);
+    Route::delete('{id}', [App\Http\Controllers\CartController::class, 'delete']);
+});
 
-Route::get('cart_items', [App\Http\Controllers\CartItemController::class,'list']);
-Route::get('cart_items/{id}', [App\Http\Controllers\CartItemController::class,'info']);
+Route::prefix('cart_items')->group(function(){
+    Route::get('', [App\Http\Controllers\CartItemController::class, 'list']);
+    Route::get('{id}', [App\Http\Controllers\CartItemController::class, 'info']);
+    Route::post('', [App\Http\Controllers\CartItemController::class, 'create']);
+    Route::put('{id}', [App\Http\Controllers\CartItemController::class, 'update']);
+    Route::delete('{id}', [App\Http\Controllers\CartItemController::class, 'delete']);
+});
 
-Route::get('pers_infos', [App\Http\Controllers\PersInfoController::class,'list']);
-Route::get('pers_infos/{id}', [App\Http\Controllers\PersInfoController::class,'info']);
+Route::prefix('pers_infos')->group(function(){
+    Route::get('', [App\Http\Controllers\PersInfoController::class, 'list']);
+    Route::get('{id}', [App\Http\Controllers\PersInfoController::class, 'info']);
+    Route::post('', [App\Http\Controllers\PersInfoController::class, 'create']);
+    Route::put('{id}', [App\Http\Controllers\PersInfoController::class, 'update']);
+    Route::delete('{id}', [App\Http\Controllers\PersInfoController::class, 'delete']);
+});
