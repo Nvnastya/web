@@ -14,7 +14,7 @@ class ProductController extends Controller
     }
 
     
-    public function active(ProductService $service)
+    public function gift(ProductService $service)
     {
         return $service->getProductsgift();
     }

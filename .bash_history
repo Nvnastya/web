@@ -34,3 +34,7 @@ php artisan migrate:rollback --step=1
 php artisan migrate:rollback --step=3
 php artisan migrate
 exit
+php artisan route:cache
+exit
+php artisan route:cache
+exit

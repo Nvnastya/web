@@ -1,55 +1,70 @@
 <script setup>
-import {ref} from 'vue'
-const login = ref('')
-const password = ref('')
-const FIO = ref('')
-const tel = ref('')
+import axios from "axios";
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-const loginError = ref('')
-const passwordError = ref('')
-const FIOError = ref('')
-const telError = ref('')
+const router = useRouter();
+
+const login = ref('');
+const password = ref('');
+const email = ref('');
+
+const loginError = ref('');
+const passwordError = ref('');
+const emailError = ref('');
 
 const singIn = (event) => {
+    event.preventDefault();
+
+    loginError.value = '';
+    passwordError.value = '';
+    emailError.value = '';
+
+    let isValid = true;
+
     if (login.value.length === 0) {
-        loginError.value = 'Заполните имя пользователя'
-    } else {
-        loginError.value = ''
+        loginError.value = 'Заполните имя пользователя';
+        isValid = false;
     }
+
     if (password.value.length === 0) {
-        passwordError.value = 'Заполните пароль'
-    } else {
-        passwordError.value = ''
+        passwordError.value = 'Заполните пароль';
+        isValid = false;
     }
-    if (FIO.value.length === 0) {
-        FIOError.value = 'Заполните пароль'
-    } else {
-        FIOError.value = ''
+
+    if (email.value.length === 0) {
+        emailError.value = 'Заполните email';
+        isValid = false;
     }
-    if (tel.value.length === 0) {
-        telError.value = 'Заполните пароль'
-    } else {
-        telError.value = ''
+
+    if (isValid) {
+        axios.post('/register/', { 
+            name: login.value, 
+            password: password.value, 
+            email: email.value, 
+            password_confirmation: password.value 
+        })
+        .then(response => {
+            console.log('Форма отправлена', response);
+            router.push({ name: 'authorization' });
+        })
+        .catch(error => {
+            console.error('Ошибка при регистрации:', error);
+        });
     }
-    
-    event.preventDefault()
-}
+};
+
 </script>
 
 <template>
-<body class="base">
+  <body class="base">
     <div class="container">
         <h2 class="tit">Регистрация</h2>
         <form @submit="singIn">
             <div class="input-group">
-                <label for="name">ФИО</label>
-                <input type="text" name="name" v-model="FIO">
-                <div class="error">{{ FIOError }}</div>
-            </div>
-            <div class="input-group">
-                <label for="tel">Номер телефона</label>
-                <input type="tel" name="tel" v-model="tel">
-                <div class="error">{{ telError }}</div>
+                <label for="email">Электронная почта</label>
+                <input type="email" name="email" v-model="email">
+                <div class="error">{{ emailError }}</div>
             </div>
             <div class="input-group">
                 <label for="username">Имя пользователя</label>
@@ -61,8 +76,8 @@ const singIn = (event) => {
                 <input type="password" name="password" v-model="password">
                 <div class="error">{{ passwordError }}</div>
             </div>
-            <button  class="but_a">Зарегестрироваться</button>
+            <button type="submit" class="but_a">Зарегистрироваться</button>
         </form>
     </div>
-</body>
+  </body>
 </template>

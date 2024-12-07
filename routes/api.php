@@ -66,3 +66,11 @@ Route::prefix('pers_infos')->group(function(){
     Route::put('{id}', [App\Http\Controllers\PersInfoController::class, 'update']);
     Route::delete('{id}', [App\Http\Controllers\PersInfoController::class, 'delete']);
 });
+
+Route::prefix('login')->group(function(){
+    Route::post('', [App\Http\Controllers\AuthController::class, 'login']);
+});
+
+Route::prefix('register')->group(function(){
+    Route::post('', [App\Http\Controllers\RegisterController::class, 'register']);
+});

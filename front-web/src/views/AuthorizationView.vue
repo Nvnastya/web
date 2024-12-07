@@ -1,22 +1,45 @@
 <script setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
+import axios from 'axios'
+
 const login = ref('')
 const password = ref('')
 const loginError = ref('')
 const passwordError = ref('')
-const singIn = (event) => {
+const apiError = ref('')
+
+const singIn = async (event) => {
+    event.preventDefault()
+
+    loginError.value = ''
+    passwordError.value = ''
+    apiError.value = ''
+
     if (login.value.length === 0) {
         loginError.value = 'Заполните имя пользователя'
-    } else {
-        loginError.value = ''
     }
     if (password.value.length === 0) {
         passwordError.value = 'Заполните пароль'
-    } else {
-        passwordError.value = ''
     }
-    
-    event.preventDefault()
+
+    if (loginError.value || passwordError.value) {
+        return
+    }
+
+    try {
+        const response = await axios.post('/login/', {
+            username: login.value,
+            password: password.value
+        })
+
+        if (response.data.success) {
+            window.location.href = '/'
+        } else {
+            apiError.value = 'Неверные данные для входа'
+        }
+    } catch (error) {
+        apiError.value = 'Ошибка при авторизации'
+    }
 }
 </script>
 
@@ -27,15 +50,16 @@ const singIn = (event) => {
         <form @submit="singIn">
             <div class="input-group">
                 <label for="username">Имя пользователя</label>
-                <input type="text" name="username" v-model="login">
+                <input type="text" required name="username" v-model="login">
                 <div class="error">{{ loginError }}</div>
             </div>
             <div class="input-group">
                 <label for="password">Пароль</label>
-                <input type="password" name="password" v-model="password">
+                <input type="password" required name="password" v-model="password">
                 <div class="error">{{ passwordError }}</div>
             </div>
-            <button  class="but_a">Войти</button>
+            <button type = "submit" class="but_a">Войти</button>
+            <div class="error">{{ apiError }}</div>
             <p class="message">Не зарегистрированы? <router-link to="/registration">Создайте аккаунт</router-link></p>
         </form>  
     </div>

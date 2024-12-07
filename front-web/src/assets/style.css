@@ -26,6 +26,8 @@ body {
     font-weight: normal;
     font-style: normal;
     background-color:rgb(249, 244, 238);
+    min-height: 100vh;
+
 }
 
 main {
@@ -40,6 +42,10 @@ main {
 footer{
     background-color:rgb(177, 175, 169);
     padding: 15px;
+    box-sizing: border-box;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 
@@ -49,8 +55,6 @@ footer{
 
 .list_products {
     flex-wrap: wrap;
-    margin-left: -5px;
-    margin-right: -5px;
 }
 
 .product_column {
@@ -107,7 +111,8 @@ nav a {
 }
 
 .product_item {
-    margin-bottom: 15px;
+    margin: 15px;
+    padding: 0px;
 }
 
 .product_item .img_container {
@@ -192,7 +197,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 50vh;
     margin: 0;
 }
 
@@ -220,7 +225,7 @@ label {
 
 input[type="text"],
 input[type="password"],
-input[type="tel"]{
+input[type="email"]{
     width: 95%;
     padding: 10px;
     border: 1px solid #ccc;
